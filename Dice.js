@@ -1,7 +1,8 @@
 const d1 = document.querySelector("#d1");
 const d2 = document.querySelector("#d2");
 let points = [];
-let dice = [];
+let dice1 = [];
+let dice2 = [];
 let players = [{ name: "Player1", points: 0 }, { name: "Player2", points: 0 }];
 let Player1 = "Player1";
 let Player2 = "Player2";
@@ -10,52 +11,59 @@ let palyer2_points = 0;
 
 
 function rolldice() {
-        dice = Math.floor((Math.random() * 6) + 1);
-        console.log(dice);
+        dice1 = Math.floor((Math.random() * 6) + 1);
+        dice2 = Math.floor((Math.random() * 6) + 1);
+        console.log(dice1);
+        console.log(dice2);
         dicetotal = 0;
+        points =+ dicetotal;
         printer();
       };
 
 function printer() {
-    if(dice == 1){
-        diceside1();
+    if(dice1 == 1){
+        d1.innerHTML = "<img src=Noppa1.png>";
         }
-    else if(dice ==2){
-        diceside2();
+    else if(dice1 ==2){
+        d1.innerHTML = "<img src=Noppa2.png>";
     }
-    else if(dice ==3){
-        diceside3();
+    else if(dice1 ==3){
+        d1.innerHTML = "<img src=Noppa3.png>";
     }
-    else if(dice ==4){
-        diceside4();
+    else if(dice1 ==4){
+        d1.innerHTML = "<img src=Noppa4.png>";
     }
-    else if(dice ==5){
-        diceside5();
+    else if(dice1 ==5){
+        d1.innerHTML = "<img src=Noppa5.png>";
     }
-    else if(dice ==6){
-        diceside6();
+    else if(dice1 ==6){
+        d1.innerHTML = "<img src=Noppa6.png>";
     }
         else {
-            console.error("Nyt jotain on rikki tai muu kuin 1");
+            console.error("Dice 1 broken");
+            
+        };
+
+    if(dice2 ==1){
+        d2.innerHTML = "<img src=Noppa1.png>";
+    }
+    else if(dice2 ==2){
+        d2.innerHTML = "<img src=Noppa2.png>";
+    }
+    else if(dice2 ==3){
+        d2.innerHTML = "<img src=Noppa3.png>";
+    }
+    else if(dice2 ==4){
+        d2.innerHTML = "<img src=Noppa4.png>";
+    }
+    else if(dice2 ==5){
+        d2.innerHTML = "<img src=Noppa5.png>";
+    }
+    else if(dice2 ==6){
+        d2.innerHTML = "<img src=Noppa6.png>";
+    }
+        else {
+            console.error("Dice 2 broken");
             
         }
-};
-
-function diceside1() {
-d1.innerHTML = "<img src=Noppa1.png>";
-};
-function diceside2() {
-    d1.innerHTML = "<img src=Noppa2.png>";
-};
-function diceside3() {
-    d1.innerHTML = "<img src=Noppa3.png>";
-};
-function diceside4() {
-    d1.innerHTML = "<img src=Noppa4.png>";
-};
-function diceside5() {
-    d1.innerHTML = "<img src=Noppa5.png>";
-};
-function diceside6() {
-    d1.innerHTML = "<img src=Noppa6.png>";
 };
