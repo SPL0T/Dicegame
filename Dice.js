@@ -16,7 +16,10 @@ function turn ()
     win_state()
     dice1 = Math.floor((Math.random() * 6) + 1);
     dice2 = Math.floor((Math.random() * 6) + 1);
-    if(dice1 === dice2) {
+    if(dice1 == 1 || dice2 == 1){
+    score = 0;
+    console.log ("1")}
+    else if(dice1 === dice2) {
     dicetotal = dice1 * 2 + dice2 * 2;
     console.log(dicetotal);
     console.log ("doubles");
