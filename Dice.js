@@ -11,6 +11,10 @@ let palyer1_points = 0;
 let palyer2_points = 0;
 let win_condition = 100;
 
+function turn ()
+ {
+    win_state()
+ }
 
 function rolldice() {
         dice1 = Math.floor((Math.random() * 6) + 1);
@@ -19,7 +23,7 @@ function rolldice() {
         console.log(dice1)
         console.log(dice2)
         console.log(dicetotal)
-        score = score + dicetotal;
+        score += dicetotal;
         printer();
     };
 
@@ -52,6 +56,13 @@ function printer() {
             console.error("Dice 1 broken");
             
         };
+    }
+
+    function win_state() {
+    if (score >= win_condition)
+    alert("sinä voitit")
+    else
+    rolldice()
     }
 
     function dice2show() {
