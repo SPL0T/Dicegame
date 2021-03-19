@@ -12,20 +12,33 @@ let palyer2_points = 0;
 let win_condition = 100;
 
 function turn ()
- {
+{
     win_state()
- }
+    dice1 = Math.floor((Math.random() * 6) + 1);
+    dice2 = Math.floor((Math.random() * 6) + 1);
+    if(dice1 === dice2) {
+    dicetotal = dice1 * 2 + dice2 * 2;
+    console.log(dicetotal);
+    console.log ("doubles");
+    score += dicetotal;}
+    else{
+    dicetotal = dice1 + dice2;;
+    console.log(dicetotal);
+    console.log ("single");
+    score += dicetotal;}
+    printer();
+}
 
 function rolldice() {
-        dice1 = Math.floor((Math.random() * 6) + 1);
-        dice2 = Math.floor((Math.random() * 6) + 1);
-        dicetotal = dice1 + dice2;
-        console.log(dice1)
-        console.log(dice2)
-        console.log(dicetotal)
-        score += dicetotal;
-        printer();
-    };
+    dicetotal = dice1 + dice2;
+    console.log(dice1)
+    console.log(dice2)
+    score += dicetotal;
+};
+
+function double_check() {
+
+}
 
 function printer() {
     dice1show();
