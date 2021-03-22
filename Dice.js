@@ -1,6 +1,7 @@
 const d1 = document.querySelector("#d1");
 const d2 = document.querySelector("#d2");
 const pointdisplay = document.querySelector("#points");
+const change_mode = document.querySelector("#change_mode");
 let score = 0;
 let dice1 = 0;
 let dice2 = 0;
@@ -11,8 +12,21 @@ let palyer1_points = 0;
 let palyer2_points = 0;
 let win_condition = 100;
 
-function turn ()
-{
+function mode_change(){
+    if(change_mode.class == "solo"){
+        console.log("solo toimii");
+        change_mode.class = "duo"
+        change_mode.innerHTML = "Kaksin peli"
+        return;
+    }
+    else;{
+        console.log("duo toimii");
+        change_mode.class = "solo"
+        change_mode.innerHTML = "Yksin peli"
+    };
+}
+
+function turn (){
     win_state()
     dice1 = Math.floor((Math.random() * 6) + 1);
     dice2 = Math.floor((Math.random() * 6) + 1);
@@ -30,17 +44,6 @@ function turn ()
     console.log ("single");
     score += dicetotal;}
     printer();
-}
-
-function rolldice() {
-    dicetotal = dice1 + dice2;
-    console.log(dice1)
-    console.log(dice2)
-    score += dicetotal;
-};
-
-function double_check() {
-
 }
 
 function printer() {
@@ -77,8 +80,7 @@ function printer() {
     function win_state() {
     if (score >= win_condition)
     alert("sinä voitit")
-    else
-    rolldice()
+    else{}
     }
 
     function dice2show() {
