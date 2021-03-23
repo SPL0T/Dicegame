@@ -7,13 +7,15 @@
 </head>
 <body>
     <div id=gamemode>
+        <input type="number" id="win_points" placeholder="100" min="1" onclick="max_point_update()">
+        <br>
         <button id="change_mode" class="solo" onclick="mode_change()">Kaksin peli</button>
     </div>
     Hello World!
     <div id="points">
         Points: 0
     </div>
-    <button onclick="turn()">Test Me</button>
+    <button onclick="turn()">Heitä noppaa</button>
 
     <div>
         <div id="d1" class="1"></div>

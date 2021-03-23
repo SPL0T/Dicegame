@@ -2,6 +2,7 @@ const d1 = document.querySelector("#d1");
 const d2 = document.querySelector("#d2");
 const pointdisplay = document.querySelector("#points");
 const change_mode = document.querySelector("#change_mode");
+const win_points = document.querySelector("#win_points");
 let score = 0;
 let dice1 = 0;
 let dice2 = 0;
@@ -11,6 +12,19 @@ let Player2 = "Player2";
 let palyer1_points = 0;
 let palyer2_points = 0;
 let win_condition = 100;
+
+document.addEventListener('change',function() {
+win_points.onchange=max_point_update;
+},false);
+
+function max_point_update(event){
+    if(event.target.value < 1){
+        alert("Numero täytyy olla vähintään 1");
+        event.target.value = 0;}
+    else{
+    win_condition = win_points.valueAsNumber;
+    console.log(win_condition);}
+}
 
 function mode_change(){
     if(change_mode.class == "solo"){
@@ -30,20 +44,29 @@ function turn (){
     win_state()
     dice1 = Math.floor((Math.random() * 6) + 1);
     dice2 = Math.floor((Math.random() * 6) + 1);
-    if(dice1 == 1 || dice2 == 1){
+    if(dice1 == 1 && dice2 == 1){
+    score += 25;
+    printer();
+    console.log ("25");
+    alert("Sait tupla nollat. Sait 25 Pistettä");}
+    else if(dice1 == 1 || dice2 == 1){
     score = 0;
-    console.log ("1")}
+    printer();
+    console.log ("1");
+    alert("Toinen nopista oli 1. pisteesi nollattin");}
     else if(dice1 === dice2) {
     dicetotal = dice1 * 2 + dice2 * 2;
     console.log(dicetotal);
     console.log ("doubles");
-    score += dicetotal;}
+    score += dicetotal;
+    printer();
+    alert("sait tuplat. Saadut pisteesi tuplattiin");}
     else{
-    dicetotal = dice1 + dice2;;
+    dicetotal = dice1 + dice2;
     console.log(dicetotal);
     console.log ("single");
-    score += dicetotal;}
-    printer();
+    score += dicetotal;
+    printer();}
 }
 
 function printer() {
