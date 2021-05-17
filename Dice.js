@@ -1,21 +1,68 @@
 const d1 = document.querySelector("#d1");
 const d2 = document.querySelector("#d2");
 const pointdisplay = document.querySelector("#points");
+const p1_point_display = document.querySelector("#player1");
+const p2_point_display = document.querySelector("#player2");
+const on_turn_point_display = document.querySelector("#on_turn");
 const change_mode = document.querySelector("#change_mode");
 const win_points = document.querySelector("#win_points");
 let score = 0;
 let dice1 = 0;
 let dice2 = 0;
-let players = [{ name: "Player1", points: 0 }, { name: "Player2", points: 0 }];
-let Player1 = "Player1";
-let Player2 = "Player2";
-let palyer1_points = 0;
-let palyer2_points = 0;
+let players = ["player1", "player2"];
+let points = [0, 0];
 let win_condition = 100;
+let gamemode = "solo";
+let turn = 0;
+let x;
+
+function name_changer(){
+    o = document.querySelector("#name2").value;
+    console.log(players[0])
+    printer();
+};
 
 document.addEventListener('change',function() {
 win_points.onchange=max_point_update;
 },false);
+
+function logic (){
+    dice1 = Math.floor((Math.random() * 6) + 1);
+    dice2 = Math.floor((Math.random() * 6) + 1);
+    if(dice1 == 1 && dice2 == 1){
+    score += 25;
+    printer();
+    alert("Sait tupla nollat. Sait 25 Pistettä");}
+    else if(dice1 == 1 || dice2 == 1){
+    score = 0;
+    printer();
+    alert("Toinen nopista oli 1. pisteesi nollattin");}
+    else if(dice1 === dice2) {
+    dicetotal = dice1 * 2 + dice2 * 2;
+    score += dicetotal;
+    printer();
+    alert("sait tuplat. Saadut pisteesi tuplattiin");}
+    else{
+    dicetotal = dice1 + dice2;
+    score += dicetotal;
+    printer();}
+}
+
+function push(){
+    /*
+    if(turn = 0){
+        x = points[0]
+    }
+    else{
+        x = points[1]
+    }*/
+    x = points[0]
+    x += score
+    score = 0
+    printer()
+    win_state()
+}
+
 
 function max_point_update(event){
     if(event.target.value < 1){
@@ -28,51 +75,25 @@ function max_point_update(event){
 
 function mode_change(){
     if(change_mode.class == "solo"){
-        console.log("solo toimii");
+        gamemode = "duo"
         change_mode.class = "duo"
         change_mode.innerHTML = "Kaksin peli"
         return;
     }
     else;{
-        console.log("duo toimii");
+        gamemode = "solo"
         change_mode.class = "solo"
         change_mode.innerHTML = "Yksin peli"
+        
     };
-}
-
-function turn (){
-    win_state()
-    dice1 = Math.floor((Math.random() * 6) + 1);
-    dice2 = Math.floor((Math.random() * 6) + 1);
-    if(dice1 == 1 && dice2 == 1){
-    score += 25;
-    printer();
-    console.log ("25");
-    alert("Sait tupla nollat. Sait 25 Pistettä");}
-    else if(dice1 == 1 || dice2 == 1){
-    score = 0;
-    printer();
-    console.log ("1");
-    alert("Toinen nopista oli 1. pisteesi nollattin");}
-    else if(dice1 === dice2) {
-    dicetotal = dice1 * 2 + dice2 * 2;
-    console.log(dicetotal);
-    console.log ("doubles");
-    score += dicetotal;
-    printer();
-    alert("sait tuplat. Saadut pisteesi tuplattiin");}
-    else{
-    dicetotal = dice1 + dice2;
-    console.log(dicetotal);
-    console.log ("single");
-    score += dicetotal;
-    printer();}
 }
 
 function printer() {
     dice1show();
     dice2show();
-    pointdisplay.innerHTML ="Points: " + score ;
+    on_turn_point_display.innerHTML = "Vuoron pisteet: " + score ;
+    p1_point_display.innerHTML = "Player1: " + points[0] ;
+    p2_point_display.innerHTML = "Player2: " + points[1] ;
 };
 
     function dice1show() {
@@ -95,13 +116,12 @@ function printer() {
         d1.innerHTML = "<img src=Noppa6.png>";
     }
         else {
-            console.error("Dice 1 broken");
-            
+            return;
         };
     }
 
     function win_state() {
-    if (score >= win_condition)
+    if (points[0] >= win_condition || points[1] >= win_condition)
     alert("sinä voitit")
     else{}
     }
@@ -126,7 +146,6 @@ function printer() {
             d2.innerHTML = "<img src=Noppa6.png>";
         }
         else {
-            console.error("Dice 2 broken");
-            
+            return;
         }
     }

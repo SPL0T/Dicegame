@@ -7,15 +7,23 @@
 </head>
 <body>
     <div id=gamemode>
+        <input id="name1" placeholder="pelaajan 1 nimi">
+        <button id="name_change1" onclick="name_changer(o = players[0])">Vaihda pelaajan 1 nimi</button>
+        <input id="name2" placeholder="pelaajan 2 nimi">
+        <button id="name_change2" onclick="name_changer()">Vaihda pelaajan 2 nimi</button>
         <input type="number" id="win_points" placeholder="100" min="1" onclick="max_point_update()">
         <br>
         <button id="change_mode" class="solo" onclick="mode_change()">Kaksin peli</button>
     </div>
     Hello World!
     <div id="points">
-        Points: 0
+        <h3 id="player1">Player1: 0</h3>
+        <h3 id="player2">Player2: 0</h3>
+        <h3 id="on_turn">Vuoron pisteet: 0</h3>
     </div>
-    <button onclick="turn()">Heitä noppaa</button>
+    <button onclick="logic()">Heitä noppaa</button>
+    <button onclick="push()">Lopeta vuoro</button>
+
 
     <div>
         <div id="d1" class="1"></div>
